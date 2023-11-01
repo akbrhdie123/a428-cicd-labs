@@ -16,10 +16,14 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('Manual Approval') {
+            steps {
+                input message: 'Lanjutkan ke tahap Deploy?', ok: 'Proceed', submitter: 'users'
+            }
+        }
         stage('Deploy') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
-                // input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)' 
                 sh './jenkins/scripts/kill.sh' 
                 sh 'sleep 60' 
             }
