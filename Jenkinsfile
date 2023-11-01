@@ -16,7 +16,7 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Manual Approval') {
+        stage('Approve based on environment lead') {
             steps {
                 input message: 'Ingin Melanjutkan Ke Tahap Deployment?', ok: 'Proceed', submitter: 'users'
             }
