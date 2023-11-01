@@ -18,14 +18,14 @@ pipeline {
         }
         stage('Manual Approval') {
             steps {
-                input message: 'Lanjutkan ke tahap Deploy?', ok: 'Proceed', submitter: 'users'
+                input message: 'Ingin Melanjutkan Ke Tahap Deployment?', ok: 'Proceed', submitter: 'users'
             }
         }
         stage('Deploy') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
                 sh './jenkins/scripts/kill.sh' 
-                sh 'sleep 60' 
+                sh 'sleep 10' 
             }
         }
     }
